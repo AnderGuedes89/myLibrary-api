@@ -42,8 +42,6 @@ namespace myLibrary_api.Controllers
         }
 
         // PUT: api/Loans/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLoan(int id, Loan loan)
         {
@@ -74,8 +72,6 @@ namespace myLibrary_api.Controllers
         }
 
         // POST: api/Loans
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Loan>> PostLoan(Loan loan)
         {

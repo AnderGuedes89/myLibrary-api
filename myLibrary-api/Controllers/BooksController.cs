@@ -41,9 +41,25 @@ namespace myLibrary_api.Controllers
             return book;
         }
 
+        // GET: api/Books/GetBookDetails/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Book>> GetBookDetails(int id)
+        {
+            var book = _context.Books
+                .Include(book => book.Loans)
+                .Include(book => book.Reserves)
+                .Where(book => book.BooId == id)
+                .FirstOrDefault();
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            return book;
+        }
+
         // PUT: api/Books/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBook(int id, Book book)
         {
@@ -74,8 +90,6 @@ namespace myLibrary_api.Controllers
         }
 
         // POST: api/Books
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {

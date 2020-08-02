@@ -41,9 +41,25 @@ namespace myLibrary_api.Controllers
             return user;
         }
 
+        // GET: api/Users/GetUserDetails/5
+        [HttpGet("GetUserDetails/{id}")]
+        public async Task<ActionResult<User>> GetUserDetails(int id)
+        {
+            var user = _context.Users
+                .Include(user => user.Loans)
+                .Include(user => user.Reserves)
+                .Where(user => user.UseId == id)
+                .FirstOrDefault();
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
+        }
+
         // PUT: api/Users/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
@@ -74,8 +90,6 @@ namespace myLibrary_api.Controllers
         }
 
         // POST: api/Users
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {

@@ -42,8 +42,6 @@ namespace myLibrary_api.Controllers
         }
 
         // PUT: api/Reserves/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutReserve(int id, Reserve reserve)
         {
@@ -74,8 +72,6 @@ namespace myLibrary_api.Controllers
         }
 
         // POST: api/Reserves
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Reserve>> PostReserve(Reserve reserve)
         {
